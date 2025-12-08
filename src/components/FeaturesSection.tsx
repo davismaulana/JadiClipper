@@ -50,7 +50,7 @@ const features = [
 
 const FeaturesSection: React.FC = () => {
   return (
-    <section id="features" className="min-h-screen py-16 md:py-24 bg-surface flex flex-col justify-center">
+    <section id="fitur" className="min-h-screen py-16 md:py-24 bg-surface flex flex-col justify-center">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <motion.div

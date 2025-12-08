@@ -4,6 +4,8 @@ import { useScrollTo } from '../hooks/useScrollTo';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import logo from '../assets/main-logo.png';
+
 interface HeaderProps {
   onNavigate?: (sectionId: string) => void; // Optional override
 }
@@ -31,16 +33,16 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
   };
 
   const navLinks = [
-    { name: 'Cara Kerja', id: 'how-it-works' },
-    { name: 'Fitur', id: 'features' },
-    { name: 'Untuk Siapa', id: 'target-audience' },
+    { name: 'Cara Kerja', id: 'cara-kerja' },
+    { name: 'Fitur', id: 'fitur' },
+    { name: 'Untuk Siapa', id: 'untuk-siapa' },
   ];
 
   return (
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm py-0" : "bg-transparent py-0"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -49,9 +51,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
           className="text-2xl font-bold cursor-pointer" 
           onClick={() => handleNavClick('hero')}
         >
-          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            JadiClipper
-          </span>
+          <img src={logo} alt="JadiClipper Logo" className="h-20 w-auto" />
         </div>
 
         {/* Desktop Nav */}

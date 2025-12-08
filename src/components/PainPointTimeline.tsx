@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
-import { popUpVariants, viewportConfig } from '../lib/animations';
+import { popUpVariants, containerVariants, viewportConfig } from '../lib/animations';
 
 interface TimelineStage {
   emoji: string;

@@ -27,7 +27,7 @@ const steps = [
 
 const HowItWorksSection: React.FC = () => {
   return (
-    <section id="how-it-works" className="min-h-screen py-16 md:py-24 bg-gray-900 text-white flex flex-col justify-center relative overflow-hidden">
+    <section id="cara-kerja" className="min-h-screen py-16 md:py-24 bg-gray-900 text-white flex flex-col justify-center relative overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[120px]" />
