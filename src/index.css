@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bgLight text-textDark font-sans antialiased;
+  }
+  h1 {
+    @apply font-bold text-h1 text-textDark;
+  }
+  h2 {
+    @apply font-bold text-h2 text-textDark;
+  }
+  h3 {
+    @apply font-bold text-h3 text-textDark;
+  }
+  h4 {
+    @apply font-bold text-h4 text-textDark;
+  }
+}
