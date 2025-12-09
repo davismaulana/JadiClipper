@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useScrollTo } from '../hooks/useScrollTo';
 import { FaPlay, FaCheckCircle } from 'react-icons/fa';
 import { popUpVariants, containerVariants, springTransition } from '../lib/animations';
+import ctaImg from '../assets/cta-img.png';
 
 interface HeroProps {
   onFormScroll?: () => void;
@@ -95,7 +96,7 @@ const HeroSection: React.FC<HeroProps> = ({ onFormScroll, onDemoClick }) => {
           >
             Coba Sekarang – Gratis
           </motion.button>
-          <motion.button
+          {/* <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={springTransition}
@@ -104,7 +105,7 @@ const HeroSection: React.FC<HeroProps> = ({ onFormScroll, onDemoClick }) => {
           >
             <span className="bg-red-500 text-white p-2 rounded-full shadow-md"><FaPlay className="text-xs ml-0.5" /></span>
              Lihat Magic-nya (60s)
-          </motion.button>
+          </motion.button> */}
         </motion.div>
         
         <p className="mt-4 text-sm text-textLight opacity-80">
@@ -113,17 +114,39 @@ const HeroSection: React.FC<HeroProps> = ({ onFormScroll, onDemoClick }) => {
 
         {/* Visual/Image Placeholder */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 bg-gray-900 aspect-video relative group"
+          initial={{ opacity: 0, scale: 0.8, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 100,
+            damping: 20,
+            delay: 0.5 
+          }}
+          className="mt-16 relative w-full max-w-5xl"
         >
-          <div className="absolute inset-0 bg-gradient-to-tr from-gray-800 to-gray-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
-             <span className="text-white/50 font-mono">Hero Dashboard Interface Placeholder</span>
-             {/* Generate Image can fill this later */}
+          {/* Monitor Enclosure */}
+          <div className="bg-white p-2 md:p-4 rounded-[2rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] border border-white/40 ring-1 ring-gray-200/50 backdrop-blur-sm">
+             <div className="relative rounded-[1.5rem] overflow-hidden aspect-video bg-gray-900 border border-gray-100">
+                <img 
+                  src={ctaImg} 
+                  alt="JadiClipper Dashboard Interface" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
+                {/* Screen Glare/Reflection */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-bgLight via-transparent to-transparent h-1/3 bottom-0 opacity-10 pointer-events-none"></div>
+                 <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none"></div>
+             </div>
           </div>
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-bgLight via-transparent to-transparent h-1/3 bottom-0 opacity-20"></div>
+          
+          {/* Copyright/Powered By */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="mt-4 text-xs md:text-sm text-textLight/60 font-medium tracking-wide flex items-center justify-center gap-2"
+          >
+            <span>Powered by Nano Banana Pro</span>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>
