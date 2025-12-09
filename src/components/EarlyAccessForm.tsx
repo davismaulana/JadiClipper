@@ -63,12 +63,12 @@ const EarlyAccessForm = () => {
                     <div className="mb-10">
                         <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-white/80 mb-3">
                             <span>Step {step} of {totalSteps}</span>
-                            <span>{Math.round((step / totalSteps) * 100)}% Complete</span>
+                            <span>{showSuccessModal ? 100 : Math.round((step / (totalSteps + 1)) * 100)}% Complete</span>
                         </div>
                         <div className="h-3 bg-black/20 rounded-full overflow-hidden">
                             <motion.div 
                                 initial={{ width: 0 }}
-                                animate={{ width: `${(step / totalSteps) * 100}%` }}
+                                animate={{ width: `${showSuccessModal ? 100 : (step / (totalSteps + 1)) * 100}%` }}
                                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                                 className="h-full bg-gradient-to-r from-yellow-300 to-yellow-500"
                             />
