@@ -4,11 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { earlyAccessSchema, type EarlyAccessFormData } from '../lib/validation';
 import SuccessModal from './SuccessModal';
-import { FaArrowRight, FaCheck } from 'react-icons/fa';
+import { FaArrowRight, FaCheck, FaChevronDown } from 'react-icons/fa';
 
 const EarlyAccessForm = () => {
     const [step, setStep] = useState(1);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [isValidating, setIsValidating] = useState(false);
     const totalSteps = 4;
 
     const { register, handleSubmit, formState: { errors, isSubmitting }, trigger, reset, watch } = useForm<EarlyAccessFormData>({
@@ -20,21 +21,39 @@ const EarlyAccessForm = () => {
     const formData = watch();
 
     const onSubmit = async (data: EarlyAccessFormData) => {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        console.log('Form Submitted:', data);
-        setShowSuccessModal(true);
-        reset();
-        setStep(1);
+        // Prevent submission if not on the last step
+        if (step !== totalSteps) return;
+
+        try {
+            await fetch('https://primary-production-8578.up.railway.app/webhook/creator-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            console.log('Form Submitted Successfully');
+            setShowSuccessModal(true);
+            reset();
+            setStep(1);
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert(`Error: ${error instanceof Error ? error.message : 'Unknown network error'}`);
+        }
     };
 
     const nextStep = async () => {
+        if (isValidating) return;
+        setIsValidating(true);
+
         let fieldsToValidate: (keyof EarlyAccessFormData)[] = [];
         if (step === 1) fieldsToValidate = ['fullName', 'email'];
         if (step === 2) fieldsToValidate = ['primaryPlatform', 'contentType'];
         if (step === 3) fieldsToValidate = ['videoFrequency', 'currentWorkflow'];
 
         const isValid = await trigger(fieldsToValidate);
+        setIsValidating(false);
         if (isValid) setStep(s => s + 1);
     };
 
@@ -63,12 +82,12 @@ const EarlyAccessForm = () => {
                     <div className="mb-10">
                         <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-white/80 mb-3">
                             <span>Step {step} of {totalSteps}</span>
-                            <span>{showSuccessModal ? 100 : Math.round((step / (totalSteps + 1)) * 100)}% Complete</span>
+                            <span>{showSuccessModal ? 100 : Math.round((step / totalSteps) * 100)}% Complete</span>
                         </div>
                         <div className="h-3 bg-black/20 rounded-full overflow-hidden">
                             <motion.div 
                                 initial={{ width: 0 }}
-                                animate={{ width: `${showSuccessModal ? 100 : (step / (totalSteps + 1)) * 100}%` }}
+                                animate={{ width: `${showSuccessModal ? 100 : (step / totalSteps) * 100}%` }}
                                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
                                 className="h-full bg-gradient-to-r from-yellow-300 to-yellow-500"
                             />
@@ -120,32 +139,42 @@ const EarlyAccessForm = () => {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-sm font-medium text-white/80 mb-1">Platform Utama</label>
-                                            <select 
-                                                {...register('primaryPlatform')}
-                                                className="w-full bg-black/20 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:bg-black/30 focus:border-white transition-colors appearance-none"
-                                            >
-                                                <option value="" className="text-textDark">Pilih Platform</option>
-                                                <option value="youtube" className="text-textDark">YouTube</option>
-                                                <option value="tiktok" className="text-textDark">TikTok</option>
-                                                <option value="twitch" className="text-textDark">Twitch</option>
-                                                <option value="instagram" className="text-textDark">Instagram</option>
-                                                <option value="podcast" className="text-textDark">Spotify/Podcast</option>
-                                            </select>
+                                            <div className="relative">
+                                                <select 
+                                                    {...register('primaryPlatform')}
+                                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors appearance-none cursor-pointer placeholder-gray-500"
+                                                >
+                                                    <option value="" className="bg-white text-gray-900">Pilih Platform</option>
+                                                    <option value="youtube" className="bg-white text-gray-900">YouTube</option>
+                                                    <option value="tiktok" className="bg-white text-gray-900">TikTok</option>
+                                                    <option value="twitch" className="bg-white text-gray-900">Twitch</option>
+                                                    <option value="instagram" className="bg-white text-gray-900">Instagram</option>
+                                                    <option value="podcast" className="bg-white text-gray-900">Spotify/Podcast</option>
+                                                </select>
+                                                <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-primary">
+                                                    <FaChevronDown className="w-4 h-4" />
+                                                </div>
+                                            </div>
                                             {errors.primaryPlatform && <p className="text-red-300 text-sm mt-1">{errors.primaryPlatform.message}</p>}
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium text-white/80 mb-1">Tipe Konten</label>
-                                            <select 
-                                                {...register('contentType')}
-                                                className="w-full bg-black/20 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:bg-black/30 focus:border-white transition-colors appearance-none"
-                                            >
-                                                <option value="" className="text-textDark">Pilih Kategori</option>
-                                                <option value="gaming" className="text-textDark">Gaming</option>
-                                                <option value="comedy" className="text-textDark">Comedy/Entertainment</option>
-                                                <option value="education" className="text-textDark">Edukasi/Tutorial</option>
-                                                <option value="podcast" className="text-textDark">Podcast/Talkshow</option>
-                                                <option value="vlog" className="text-textDark">Vlog/Lifestyle</option>
-                                            </select>
+                                            <div className="relative">
+                                                <select 
+                                                    {...register('contentType')}
+                                                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors appearance-none cursor-pointer placeholder-gray-500"
+                                                >
+                                                    <option value="" className="bg-white text-gray-900">Pilih Kategori</option>
+                                                    <option value="gaming" className="bg-white text-gray-900">Gaming</option>
+                                                    <option value="comedy" className="bg-white text-gray-900">Comedy/Entertainment</option>
+                                                    <option value="education" className="bg-white text-gray-900">Edukasi/Tutorial</option>
+                                                    <option value="podcast" className="bg-white text-gray-900">Podcast/Talkshow</option>
+                                                    <option value="vlog" className="bg-white text-gray-900">Vlog/Lifestyle</option>
+                                                </select>
+                                                <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-primary">
+                                                    <FaChevronDown className="w-4 h-4" />
+                                                </div>
+                                            </div>
                                             {errors.contentType && <p className="text-red-300 text-sm mt-1">{errors.contentType.message}</p>}
                                         </div>
                                     </div>
@@ -225,15 +254,18 @@ const EarlyAccessForm = () => {
                             
                             {step < totalSteps ? (
                                 <button 
+                                    key="next-btn"
                                     type="button" 
                                     onClick={nextStep}
-                                    className="flex-1 px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                                    disabled={isValidating}
+                                    className="flex-1 px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    Lanjut <FaArrowRight />
+                                    {isValidating ? 'Checking...' : 'Lanjut'} <FaArrowRight />
                                 </button>
                             ) : (
                                 <button 
                                     type="submit" 
+                                    key="submit-btn"
                                     disabled={isSubmitting}
                                     className="flex-1 px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
