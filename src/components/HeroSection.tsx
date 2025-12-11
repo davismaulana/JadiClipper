@@ -1,16 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useScrollTo } from '../hooks/useScrollTo';
-import { FaPlay, FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { popUpVariants, containerVariants, springTransition } from '../lib/animations';
 import ctaImg from '../assets/cta-img.png';
 
 interface HeroProps {
   onFormScroll?: () => void;
-  onDemoClick?: () => void;
 }
 
-const HeroSection: React.FC<HeroProps> = ({ onFormScroll, onDemoClick }) => {
+const HeroSection: React.FC<HeroProps> = ({ onFormScroll }) => {
   const scrollTo = useScrollTo();
 
   const handlePrimaryClick = () => {

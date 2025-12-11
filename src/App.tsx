@@ -22,11 +22,6 @@ function App() {
     scrollTo('early-access');
   };
 
-  const handleHeroDemoClick = () => {
-    // Placeholder for demo video modal trigger
-    alert("Demo video modal placeholder: 'Cek transformasi 60 detik!'");
-  };
-
   return (
     <div className="min-h-screen font-sans bg-bgLight text-textDark selection:bg-primary/20 selection:text-primaryDark">
       <Header />
@@ -34,7 +29,6 @@ function App() {
       <main>
         <HeroSection 
           onFormScroll={handleHeroFormScroll} 
-          onDemoClick={handleHeroDemoClick} 
         />
         
         <PainPointTimeline />
