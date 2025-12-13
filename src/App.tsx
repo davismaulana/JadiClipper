@@ -9,8 +9,10 @@ import HowItWorksSection from './components/HowItWorksSection';
 import ImpactMetricsSection from './components/ImpactMetricsSection';
 import WhyCreatorsLoveItSection from './components/WhyCreatorsLoveItSection';
 import TargetAudienceSection from './components/TargetAudienceSection';
+import ComparisonSection from './components/ComparisonSection';
 import EarlyAccessCTA from './components/EarlyAccessCTA';
 import EarlyAccessForm from './components/EarlyAccessForm';
+import RoadmapSection from './components/RoadmapSection';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import { useScrollTo } from './hooks/useScrollTo';
@@ -25,34 +27,38 @@ function App() {
   return (
     <div className="min-h-screen font-sans bg-bgLight text-textDark selection:bg-primary/20 selection:text-primaryDark">
       <Header />
-      
+
       <main>
-        <HeroSection 
-          onFormScroll={handleHeroFormScroll} 
+        <HeroSection
+          onFormScroll={handleHeroFormScroll}
         />
-        
+
         <PainPointTimeline />
-        
+
         <SolutionSection />
-        
+
         <CreatorTestimonials />
-        
+
         <FeaturesSection />
-        
+
         <HowItWorksSection />
-        
+
         <ImpactMetricsSection />
-        
+
         <WhyCreatorsLoveItSection />
-        
+
         <TargetAudienceSection />
-        
+
+        <ComparisonSection />
+
         <div id="early-access">
           <EarlyAccessCTA />
           <EarlyAccessForm />
         </div>
-        
+
         <FAQSection />
+
+        <RoadmapSection />
       </main>
 
       <Footer />

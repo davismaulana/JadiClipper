@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaRobot, FaClosedCaptioning, FaCrop, FaBolt, FaMagic, FaChartLine } from 'react-icons/fa';
+import { FaRobot, FaClosedCaptioning, FaCrop, FaBolt } from 'react-icons/fa';
 import { popUpVariants, springTransition, viewportConfig } from '../lib/animations';
 
 const features = [
@@ -12,39 +12,25 @@ const features = [
     bg: "bg-blue-50"
   },
   {
-    icon: <FaClosedCaptioning />,
-    title: "Auto Subtitle (Indo)",
-    description: "Subtitle akurat 98% dalam Bahasa Indonesia. Slang, bahasa gaul, semua kebaca.",
-    color: "text-yellow-500",
-    bg: "bg-yellow-50"
-  },
-  {
     icon: <FaCrop />,
     title: "Smart Vertical Crop",
-    description: "Face tracking otomatis. Muka kamu + Gameplay selalu center, gak kepotong.",
+    description: "Face tracking otomatis. Muka kamu + Gameplay selalu center, gak kepotong. 9:16 ready.",
     color: "text-red-500",
     bg: "bg-red-50"
   },
   {
     icon: <FaBolt />,
     title: "Instant Export",
-    description: "Pilih klip -> Render -> Download. Cuma butuh 2 menit sampe file siap post.",
+    description: "Render cepat tanpa antri lama. Kualitas asli sesuai source video kamu (no upscaling).",
     color: "text-purple-500",
     bg: "bg-purple-50"
   },
   {
-    icon: <FaMagic />,
-    title: "B-Roll Otomatis (Beta)",
-    description: "Tambahin meme atau sound effect otomatis pas momen lucu. Magic!",
-    color: "text-pink-500",
-    bg: "bg-pink-50"
-  },
-  {
-    icon: <FaChartLine />,
-    title: "Virality Score",
-    description: "AI kasih skor prediksi: 'Klip ini potensi 80% viral'. Post yang skornya tinggi duluan.",
-    color: "text-green-500",
-    bg: "bg-green-50"
+    icon: <FaClosedCaptioning />,
+    title: "Auto Subtitle (Indo)",
+    description: "Subtitle akurat 98% dalam Bahasa Indonesia. Slang, bahasa gaul, semua kebaca.",
+    color: "text-yellow-500",
+    bg: "bg-yellow-50"
   }
 ];
 
@@ -54,27 +40,27 @@ const FeaturesSection: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
           <motion.div
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={viewportConfig}
-             className="text-primary font-bold tracking-widest uppercase mb-4 text-xs md:text-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportConfig}
+            className="text-primary font-bold tracking-widest uppercase mb-4 text-xs md:text-sm"
           >
-             Feature Lengkap
+            Feature Lengkap
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewportConfig}
             transition={springTransition}
             className="text-3xl md:text-5xl font-black mb-6 text-textDark"
           >
-            Satu Tool, <span className="text-secondary bg-secondary/10 px-2 rounded-lg">Semua Masalah Beres</span>
+            Satu Tool, <span className="text-secondary bg-secondary/10 px-2 rounded-lg">Satu Solusi Utama</span>
           </motion.h2>
-          <motion.p 
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             transition={{ delay: 0.2 }}
-             className="text-xl text-textLight"
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-textLight"
           >
             Kami handle teknisnya, kamu fokus bikin kontennya.
           </motion.p>
@@ -88,9 +74,9 @@ const FeaturesSection: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={viewportConfig}
-              whileHover={{ 
-                  y: -10,
-                  transition: { type: "spring", stiffness: 300 }
+              whileHover={{
+                y: -10,
+                transition: { type: "spring", stiffness: 300 }
               }}
               className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-gray-100 group cursor-default"
             >
