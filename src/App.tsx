@@ -15,6 +15,7 @@ import EarlyAccessForm from './components/EarlyAccessForm';
 import RoadmapSection from './components/RoadmapSection';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
+import ScrollToTopButton from './components/ScrollToTopButton';
 import { useScrollTo } from './hooks/useScrollTo';
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
       </main>
 
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 }
