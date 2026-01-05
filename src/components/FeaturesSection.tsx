@@ -83,7 +83,7 @@ const FeaturesSection: React.FC = () => {
               <div className={`w-14 h-14 ${feature.bg} ${feature.color} rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm group-hover:scale-110 transition-transform`}>
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3 text-textDark group-hover:text-primary transition-colors">{feature.title}</h3>
+              <div className="text-xl font-bold mb-3 text-textDark group-hover:text-primary transition-colors">{feature.title}</div>
               <p className="text-textLight leading-relaxed">
                 {feature.description}
               </p>

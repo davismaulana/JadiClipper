@@ -77,8 +77,8 @@ const HeroSection: React.FC<HeroProps> = ({ onFormScroll }) => {
           variants={popUpVariants}
           className="text-xl md:text-2xl text-textLight max-w-3xl mb-12 leading-relaxed"
         >
-          Stop nonton ulang stream 4 jam cuma buat cari 3 klip TikTok. <br className="hidden md:block" />
-          <b>JadiClipper</b> pake AI buat otomatisin bagian "membosankan" dari karirmu.
+          Stop habiskan <b>Jam Grinding</b> cuma buat cari 3 klip TikTok. <br className="hidden md:block" />
+          <b>JadiClipper</b> pakai AI buat otomatisin editing biar kamu fokus ke <b>Kreativitas</b>.
         </motion.p>
 
         {/* CTAs */}

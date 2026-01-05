@@ -82,7 +82,7 @@ const CreatorTestimonials: React.FC = () => {
                   {testimonial.name[0]}
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg leading-none">{testimonial.name}</h4>
+                  <div className="font-bold text-lg leading-none">{testimonial.name}</div>
                   <div className="flex items-center text-gray-400 text-sm mt-1">
                     <FaTwitter className="mr-1 text-blue-400" /> {testimonial.handle}
                   </div>

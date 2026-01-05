@@ -18,9 +18,9 @@ const Footer: React.FC = () => {
             </div>
 
             <div className="flex space-x-6">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaDiscord size={24} /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><FaWhatsapp size={24} /></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><FaInstagram size={24} /></a>
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><FaDiscord size={24} /></a>
+                <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors"><FaWhatsapp size={24} /></a>
             </div>
         </div>
 
@@ -31,8 +31,8 @@ const Footer: React.FC = () => {
                 <span>Early Access Testing (88/100 spots filled)</span>
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+                <a href="/privacy-policy.html" className="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="/terms-of-service.html" className="hover:text-primary transition-colors">Terms of Service</a>
             </div>
         </div>
       </div>

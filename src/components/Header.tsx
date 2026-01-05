@@ -79,9 +79,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <button
+            <a
               key={link.name}
-              onClick={() => handleNavClick(link.id)}
+              href={`#${link.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(link.id);
+              }}
               className={cn(
                 "transition-colors font-medium text-sm",
                 activeSection === link.id
@@ -90,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
               )}
             >
               {link.name}
-            </button>
+            </a>
           ))}
           <button
             onClick={() => handleNavClick('early-access')}
@@ -119,9 +123,13 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
             >
               <nav className="flex flex-col py-4 px-4 space-y-4">
                 {navLinks.map((link) => (
-                  <button
+                  <a
                     key={link.name}
-                    onClick={() => handleNavClick(link.id)}
+                    href={`#${link.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.id);
+                    }}
                     className={cn(
                       "text-left font-medium py-2 border-b border-gray-50 last:border-0",
                       activeSection === link.id
@@ -130,7 +138,7 @@ const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
                     )}
                   >
                     {link.name}
-                  </button>
+                  </a>
                 ))}
                 <button
                   onClick={() => handleNavClick('early-access')}
